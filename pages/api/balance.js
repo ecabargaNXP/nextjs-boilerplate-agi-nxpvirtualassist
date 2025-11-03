@@ -1,15 +1,15 @@
 export default function handler(req, res) {
   if (req.method === 'POST') {
-    console.log('Recibido desde Bland:', req.body);
+    const { cliente_id } = req.body;
 
-    const respuesta = {
-      mensaje: 'Your Balance is $123.45',
-      saldo: 123.45
-    };
-
-    res.status(200).json(respuesta);
+    if (cliente_id === 'demo001') {
+      return res.status(200).json({ balance: '$125.00', cliente_id });
+    } else {
+      return res.status(404).json({ error: 'Cliente no encontrado' });
+    }
   } else {
-    res.status(405).json({ error: 'Método no permitido' });
+    res.setHeader('Allow', ['POST']);
+    return res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
 
