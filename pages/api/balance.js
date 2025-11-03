@@ -3,7 +3,7 @@ export default function handler(req, res) {
     console.log('Recibido desde Bland:', req.body);
 
     const respuesta = {
-      mensaje: 'Tu saldo actual es $123.45',
+      mensaje: 'Your Balance is $123.45',
       saldo: 123.45
     };
 
