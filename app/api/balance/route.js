@@ -1,17 +1,37 @@
 export async function POST(request) {
   const body = await request.json();
-  console.log("Petición desde Bland:", body);
+  const awb = body.awb;
 
-  return new Response(
-    JSON.stringify({
-      message: "Your Balance is $833.88",
-      balance: 18833.88
-    }),
-    {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json"
+  console.log("Petición desde Bland - AWB:", awb);
+
+  const balances = {
+    "125-21178651": 833.88,
+    "125-21178652": 1240.55,
+    "125-21178653": 462.12,
+  };
+
+  const balance = balances[awb];
+
+  if (balance !== undefined) {
+    return new Response(
+      JSON.stringify({
+        message: `Your balance for AWB ${awb} is $${balance}`,
+        balance: balance,
+      }),
+      {
+        status: 200,
+        headers: { "Content-Type": "application/json" },
       }
-    }
-  );
+    );
+  } else {
+    return new Response(
+      JSON.stringify({
+        message: `AWB ${awb} not found.`,
+      }),
+      {
+        status: 404,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  }
 }
