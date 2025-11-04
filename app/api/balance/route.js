@@ -5,9 +5,9 @@ export async function POST(request) {
   console.log("Petición desde Bland - AWB:", awb);
 
   const balances = {
-    "125-21178651": 833.88,
-    "125-21178652": 1240.55,
-    "125-21178653": 462.12,
+    "12521178651": 833.88,
+    "12521178652": 1240.55,
+    "12521178653": 462.12,
   };
 
   const balance = balances[awb];
