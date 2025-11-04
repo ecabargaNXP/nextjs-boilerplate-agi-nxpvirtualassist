@@ -5,7 +5,7 @@ export async function POST(request) {
   return new Response(
     JSON.stringify({
       message: "Your Balance is $833.88",
-      balance: 833.88
+      balance: 18833.88
     }),
     {
       status: 200,
